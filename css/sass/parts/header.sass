@@ -1,0 +1,123 @@
+@import "../variable"
+
+.header
+  width: 100%
+  display: flex
+  justify-content: space-between
+  align-items: center
+  margin-top: 15px
+  margin-bottom: 20px
+  .logo
+    width: 183px
+    height: 66px
+  .nav
+    width: calc(100% - calc((183px + 51px)))
+    +adaptive($mobile)
+      display: none
+    &_shop
+      li.shop-item
+        display: flex
+        align-items: center
+        .cart_count
+          width: 26px
+          height: 26px
+          display: flex
+          align-items: center
+          justify-content: center
+          font-size: 12px
+          background: url("../img/icons/star.svg") no-repeat center
+          background-size: contain
+          margin: 0 15px
+        .cart
+          width: 26px
+          height: 26px
+    &_header
+      width: 100%
+      display: flex
+      align-items: center
+      justify-content: space-between
+      li > a.active
+        color: $blue
+      li.contact_link
+        width: 149px
+        height: 40px
+        display: flex
+        align-items: center
+        justify-content: center
+        border: 1px solid $blue
+        border-radius: 20px
+        &:hover
+          background-color: $blue
+          color: $white
+      li
+        position: relative
+        .inline-svg-icon
+          width: 12px
+          transform: rotate(-90deg)
+          fill: $black
+          position: absolute
+          top: calc(50% - 4px)
+          right: -22px
+        .sub-menu
+          display: none
+          position: absolute
+          top: 150%
+          background-color: $grey
+          border-radius: 4px
+          padding: 15px
+          text-align: center
+          box-shadow: 0 5px 9px 1px rgba(0,0,0,0.4)
+          color: $black
+          z-index: 105
+          &:hover
+            display: block
+          li
+            margin-bottom: 5px
+            &:hover
+              color: $blue
+      li.show_sub
+        color: $blue
+        .inline-svg-icon
+          fill: $blue
+        .sub-menu
+          display: block
+  .burger
+    width: 45px
+    height: 45px
+    display: none
+    flex-direction: column
+    justify-content: space-between
+    cursor: pointer
+    position: relative
+    z-index: 101
+    +adaptive($mobile)
+      display: flex
+    span
+      width: 100%
+      height: 3px
+      background-color: $blue
+  .mobile_menu
+    display: none
+    opacity: 0
+    width: 100vw
+    height: 100vh
+    position: fixed
+    top: 0
+    left: 0
+    background-color: $white
+    z-index: 100
+    transition: 0.3s
+    > div
+      height: 100%
+    .nav_header
+      height: 100%
+      flex-direction: column
+      align-items: center
+      justify-content: center
+      li
+        margin-bottom: 20px
+
+
+        
+
+

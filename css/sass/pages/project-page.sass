@@ -1,0 +1,98 @@
+@import "../variable"
+
+.project
+  &_about
+    width: 100%
+    &--title
+      width: 100%
+      text-align: center
+      font-size: 18px
+      font-weight: 700
+      margin-bottom: 30px
+    &--cover
+      width: 100%
+      height: 352px
+      margin-bottom: 30px
+      overflow: hidden
+      +adaptive($mobile)
+        height: 113px
+        margin-bottom: 20px
+        +fullImg
+    &--details
+      width: 100%
+      display: flex
+      justify-content: space-between
+      +adaptive($mobile)
+        flex-direction: column
+      .box
+        &_docs
+          width: 100%
+          max-width: 350px
+          .title
+            width: 100%
+            text-align: center
+            font-weight: 700
+            font-size: 18px
+            margin-bottom: 25px
+          .docs
+              width: 100%
+              display: flex
+              flex-wrap: wrap
+              +adaptive($mobile)
+                justify-content: space-around
+              .item
+                width: 125px
+                margin-right: 25px
+                margin-left: 25px
+                display: flex
+                flex-direction: column
+                align-items: center
+                margin-bottom: 25px
+                +adaptive($mobile)
+                  margin: 0 0 20px
+                .icon
+                  width: 67px
+                  height: 70px
+                  align-self: flex-start
+                  margin-bottom: 10px
+                .name
+                  width: 122px
+                  font-size: 12px
+                  align-self: flex-start
+                  line-height: 1
+        &_description
+          width: calc(100% - 360px)
+          +adaptive($mobile)
+            width: 100%
+          .title
+            width: 100%
+            margin-bottom: 25px
+            font-weight: 700
+            font-size: 18px
+            +adaptive($mobile)
+              margin-bottom: 15px
+          .text
+            column-count: 2
+            font-style: italic
+            +adaptive($mobile)
+              column-count: 1
+
+  &_gallery
+    width: 100%
+    display: flex
+    flex-wrap: wrap
+    +adaptive($mobile)
+      flex-direction: column
+    &--item
+      width: calc(100% / 3)
+      height: 313px
+      +adaptive($mobile)
+        width: 100%
+        height: 160px
+        overflow: hidden
+      img
+        width: auto
+  &_form
+    .form
+      .close
+        display: none

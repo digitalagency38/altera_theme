@@ -1,0 +1,44 @@
+@import "../variable"
+
+.side-bar
+  width: 167px
+  margin-right: 47px
+  +adaptive($mobile)
+    display: none
+  &--title
+    width: 100%
+    font-size: 18px
+    font-weight: 700
+    margin-bottom: 20px
+    margin-top: 50px
+  &--list
+    width: 100%
+    ul
+      li
+        margin-bottom: 10px
+        text-transform: capitalize
+        line-height: 1
+        cursor: pointer
+        &:hover
+          color: $blue
+      li.show_arrow
+        position: relative
+        .inline-svg-icon
+          width: 12px
+          transform: rotate(-90deg)
+          fill: $black
+          position: absolute
+          top: 5px
+          right: 10px
+        .sub-menu
+          display: none
+          padding-left: 20px
+          margin-top: 10px
+          color: $black
+        &:hover
+          .sub-menu
+            display: block
+  .active-tag
+    color: $blue
+
+

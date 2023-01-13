@@ -1,0 +1,283 @@
+    .new_services__in {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 30px;
+    }
+
+    .new_services__item {
+        position: relative;
+        height: 349px;
+        text-decoration: none;
+    }
+    .new_services__item-image {
+        width: 100%;
+        height: 100%;
+    }
+    .new_services__item-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 50%;
+    }
+    .new_services__item-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(180deg, rgba(0, 0, 23, 0) 28.5%, rgba(0, 0, 23, 0.85) 100%);
+        transition: all .3s ease;
+    }
+    .new_services__item:hover .new_services__item-overlay {
+        background: rgba(0, 0, 0, 0.6);
+    }
+    .new_services__item-image-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 2;
+        padding: 30px 20px;
+    }
+
+    .new_services__item-image-info .name {
+        font-family: 'Ubuntu';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 21px;
+        margin-bottom: 10px;
+        color: #FFFFFF;
+    }
+    .new_services__item-image-info .price {
+        font-family: 'Ubuntu';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 21px;
+        margin-bottom: 10px;
+        color: #FFFFFF;
+    }
+    .new_services__item-image-info .price span {
+        font-weight: 300;
+        font-size: 14px;
+    }
+
+
+    .portfolio--redesign .side-bar {
+        width: 250px;
+        margin-right: 50px;
+        display: block !important;
+    }
+    .portfolio--redesign.container--side-bar .content {
+        width: calc(100% - 300px);
+    }
+    .portfolio--redesign .side-bar--list ul {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .portfolio--redesign .side-bar--list li {
+        font-family: 'Poiret One';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 21px;
+        letter-spacing: 0.06em;
+        color: #000000;
+        border-bottom: 1px solid transparent;
+        margin-bottom: 30px;
+        transition: all .3s ease;
+    }
+
+    .portfolio--redesign .side-bar--list li:hover,
+    .portfolio--redesign .side-bar--list li.active-tag {
+        color: #0095D9;
+        border-color: #0095D9;
+    }
+
+    .portfolio--redesign .projects--list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 30px;
+    }
+    .portfolio--redesign .projects--list .item {
+        max-width: 100%;
+        margin: 0;
+        height: 349px;
+        position: relative;
+    }
+    .portfolio--redesign .projects--list .item:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%), linear-gradient(180deg, rgba(0, 0, 23, 0) 28.5%, rgba(0, 0, 23, 0.85) 100%);
+        transition: all .3s ease;
+    }
+    .portfolio--redesign .projects--list .item:hover:before {
+        background: rgba(0, 0, 0, 0.6);
+    }
+    .portfolio--redesign .projects--list .item .img {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+    .portfolio--redesign .projects--list .item .text {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: none;
+        padding: 30px 20px;
+    }
+    .portfolio--redesign .projects--list .item .date {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        text-align: right;
+        padding: 20px;
+        font-family: 'Ubuntu';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 18px;
+        color: #FFFFFF;
+    }
+    .portfolio--redesign .projects--list .item .text .title {
+        margin-bottom: 0;
+        font-family: 'Ubuntu';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 21px;
+        color: #FFFFFF;
+
+    }
+    .portfolio--redesign .projects--list .item .text .short_desc {
+        display: none;
+    }
+    .portfolio--redesign .projects {
+        margin-bottom: 30px !important;
+    }
+    .portfolio--redesign .button_show-more {
+        width: 100%;
+    }
+
+    .wp-block-group__inner-container {}
+    .text-page-redesign section h2 {
+        margin-top: 100px;
+        font-family: 'Poiret One';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 37px;
+        color: #0095D9;
+        margin-bottom: 40px;
+    }
+    .text-page-redesign section p {
+        margin-bottom: 20px;
+        font-family: 'Ubuntu';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 26px;
+        color: #454545;
+    }
+    .text-page-redesign section p>strong {
+        font-family: 'Poiret One';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 33px;
+        color: #000000;
+    }
+    .text-page-redesign section {
+        margin-bottom: 0 !important;
+    }
+
+    @media all and (max-width: 1024px) {
+        .new_services__in {
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 30px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .seo--redesign {
+            padding-top: 80px;
+            padding-bottom: 80px;
+            background: #EEF2F3;
+        }
+        .advice--redesign .advice__inner {
+            background: #EEF2F3;
+        }
+        .advice--redesign .advice__title {
+            color: #000;
+        }
+        .advice--redesign .advice__descr {
+            color: #000;
+        }
+        .portfolio--redesign.container--side-bar .content {
+            width: 100%;
+        }
+        .portfolio--redesign .side-bar {
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        .portfolio--redesign.container--side-bar {
+            display: block;
+        }
+        /* .portfolio--redesign .side-bar--list ul {
+            display: block;
+        } */
+        .portfolio--redesign .side-bar--list li.active-tag {
+            order: -1;
+        }
+        .portfolio--redesign .side-bar--list li:not(.active-tag) {
+            display: none;
+        }
+        .text-page-redesign section h2 {
+            margin-top: 80px;
+            font-size: 28px;
+            line-height: 33px;
+            margin-bottom: 30px;
+        }
+        .text-page-redesign section p {
+            font-size: 16px;
+            line-height: 26px;
+            margin-bottom: 20px;
+        }
+        .text-page-redesign section p>strong {
+            font-size: 20px;
+            line-height: 23px;
+        }
+        
+    }
+
+    @media all and (max-width: 840px) {
+        .new_services__in {
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 20px;
+        }
+        .portfolio--redesign .projects--list {
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 20px;
+        }
+    }
+    @media all and (max-width: 640px) {
+        .new_services__in {
+            grid-template-columns: repeat(1, 1fr);
+            grid-gap: 20px;
+        }
+        .portfolio--redesign .projects--list {
+            grid-template-columns: repeat(1, 1fr);
+            grid-gap: 20px;
+        }
+        .advice--redesign .btn-service {
+            width: 100%;
+        }
+    }

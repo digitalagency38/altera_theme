@@ -1,0 +1,36 @@
+@import "../variable"
+@import "../mix"
+
+.button
+  width: 185px
+  height: 40px
+  background-color: $blue
+  border-radius: 20px
+  color: $white
+  font-size: 14px
+  display: flex
+  align-items: center
+  justify-content: center
+  cursor: pointer
+  &_small
+    width: 149px
+  &_no-bg
+    background-color: white
+    color: $black
+  &_show-more
+    margin: auto
+
+button.button, .checkout-button
+  width: auto
+  min-width: 185px
+
+a.wc-backward
+  width: auto !important
+  margin-bottom: 20px
+.checkout-button
+  background-color: $blue !important
+
+.woocommerce-message
+  border-top-color: $blue !important
+  &::before
+    color: $blue !important

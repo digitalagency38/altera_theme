@@ -1,0 +1,57 @@
+@import "../variable"
+
+.not-found
+  width: 100vw
+  height: 100vh
+  background: url("../img/logo/logo_404.png")
+  background-repeat: no-repeat
+  background-position: center
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  +adaptive($mobile)
+    background-size: contain
+  .title
+    text-align: center
+    font-size: 250px
+    color: $blue
+    position: relative
+    +adaptive($mobile)
+      width: 100%
+      font-size: 40px
+    span
+      position: absolute
+      font-size: 48px
+      right: -150px
+      top: 50%
+      +adaptive($mobile)
+        display: none
+        font-size: 20px
+        position: unset
+  .text
+    width: 100%
+    max-width: 315px
+    position: absolute
+    top: 70%
+    span
+      width: 100%
+      display: block
+      font-weight: 700
+      text-align: center
+      margin-bottom: 10px
+      font-size: 18px
+    p
+      font-size: 14px
+      font-style: italic
+      margin-bottom: 20px
+      text-align: center
+    .btn
+      width: 100%
+      display: flex
+      justify-content: center
+      .button
+        text-decoration: none
+
+
+

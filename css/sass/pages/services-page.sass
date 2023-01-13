@@ -1,0 +1,56 @@
+@import "../variable"
+
+.services
+  &_title
+    width: 100%
+    text-align: center
+    font-size: 18px
+    font-weight: 700
+  &_list
+    width: 100%
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
+    +adaptive($mobile)
+      justify-content: space-around
+    &--item
+      width: 100%
+      max-width: 268px
+      margin-bottom: 15px
+      .img
+        width: 200px
+        height: 200px
+        margin: 0 auto 30px
+        +adaptive($mobile)
+          margin-bottom: 10px
+      .title
+        width: 100%
+        font-size: 30px
+        margin-bottom: 15px
+        min-height: 90px
+        line-height: 1
+        font-weight: 700
+        +adaptive($mobile)
+          margin-bottom: 10px
+          min-height: auto
+      .text
+        width: 100%
+        font-size: 18px
+        font-style: italic
+        margin-bottom: 15px
+        +cutText(6)
+      .btn
+        width: 100%
+        display: flex
+        justify-content: center
+    &--logo
+      width: 100%
+      max-width: 646px
+      height: 244px
+      margin-top: 300px
+      +adaptive($mobile)
+        display: none
+        height: 116px
+        margin-top: 30px
+
+

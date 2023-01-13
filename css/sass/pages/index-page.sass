@@ -1,0 +1,184 @@
+@import "../variable"
+
+.about_altera
+  width: 100%
+  display: flex
+  +adaptive($mobile)
+    flex-direction: column
+  .box
+    width: 50%
+    display: flex
+    align-items: center
+    justify-content: center
+    +adaptive($mobile)
+      width: 100%
+    .content
+      .title
+        width: 100%
+        font-size: 48px
+        margin-bottom: 14px
+        color: $blue
+        line-height: 1
+        font-weight: 300
+      p
+        width: 100%
+        max-width: 376px
+        font-size: 18px
+        font-weight: 300
+        margin-bottom: 18px
+      .button
+        margin: auto
+    .logo_big
+      width: 100%
+      max-width: 612px
+      height: 547px
+      +adaptive($mobile)
+        height: 240px
+        margin-top: 30px
+.service_list
+  width: 100%
+  max-width: 666px
+  margin: auto
+  position: relative
+  .service
+    &_logo
+      width: 167px
+      height: 134px
+      margin: 0 auto
+      margin-bottom: 25px
+      +adaptive($mobile)
+        margin-bottom: 10px
+    &_title
+      width: 100%
+      text-align: center
+      font-size: 95px
+      font-weight: 300
+      line-height: 1
+      margin-bottom: 27px
+      color: $blue
+      +adaptive($mobile)
+        font-size: 36px
+    &_content
+      width: 100%
+      margin: auto
+      max-width: 437px
+      font-style: italic
+      font-size: 18px
+      margin-bottom: 26px
+      font-weight: 300
+    &_btn
+      width: 100%
+      display: flex
+      justify-content: center
+  .service_list-swiper
+    &_arrow
+      background-image: url("../img/icons/service_swiper_arrow.png") !important
+      background-size: 117px 89px !important
+      width: 117px
+      height: 89px
+      +adaptive($mobile)
+        width: 55px
+        height: 42px
+        background-size: 55px 42px !important
+        top: 90px
+      &:focus
+        outline: none
+        border: none
+      &--right
+        transform: rotate(180deg)
+        right: -150px
+        +adaptive($mobile)
+          right: 0
+      &--left
+        left: -150px
+        +adaptive($mobile)
+          left: 0
+.portfolio
+  width: 100%
+  &_title
+    width: 100%
+    text-align: center
+    font-size: 30px
+    margin-bottom: 30px
+    color: $blue
+    font-weight: 300
+    +adaptive($mobile)
+      margin-bottom: 14px
+  &_gallery
+    width: 100%
+    display: flex
+    justify-content: space-between
+    flex-wrap: wrap
+    margin-bottom: 80px
+    +adaptive($mobile)
+      margin-bottom: 14px
+    &--item
+      width: calc(calc(100% - 32px)/3)
+      margin-bottom: 16px
+      +adaptive($mobile)
+        width: 100%
+        margin-bottom: 8px
+  &_btn
+    width: 100%
+    display: flex
+    justify-content: center
+
+.blog
+  width: 100%
+  max-width: 646px
+  margin: auto
+  &_logo
+    width: 100%
+    height: 244px
+    margin-bottom: 50px
+    +adaptive($mobile)
+      height: 116px
+      margin-bottom: 14px
+  &_text
+    width: 100%
+    max-width: 320px
+    text-align: center
+    font-style: italic
+    font-size: 18px
+    color: $blue
+    margin: 0 auto 50px
+    +adaptive($mobile)
+      margin-bottom: 14px
+  &_btn
+    width: 100%
+    display: flex
+    justify-content: center
+
+
+.clients
+  width: 100%
+  &_title
+    width: 100%
+    text-align: center
+    font-size: 30px
+    font-style: italic
+    font-weight: 300
+    color: $blue
+    margin-bottom: 45px
+    +adaptive($mobile)
+      line-height: 1
+      margin-bottom: 14px
+  &_logos
+    width: 100%
+    display: flex
+    flex-wrap: wrap
+    align-items: center
+    margin: 0 1% 15px 1%
+    +adaptive($mobile)
+      flex-wrap: wrap
+    &--item
+      width: 18%
+      height: auto
+      +adaptive($mobile)
+        width: 100%
+
+
+
+
+
+

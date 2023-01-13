@@ -1,0 +1,18 @@
+.button {
+  width: 185px;
+  height: 40px;
+  background-color: #0293D5;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer; }
+  .button_small {
+    width: 149px; }
+  .button_no-bg {
+    background-color: white;
+    color: #000; }
+
+/*# sourceMappingURL=buttons.css.map */

@@ -1,0 +1,101 @@
+@import "../variable"
+
+.blog-page
+  width: 100%
+  &--title
+    width: 100%
+    text-align: center
+    font-weight: 700
+    font-size: 18px
+    margin-bottom: 30px
+  &--first
+    width: 100%
+    display: flex
+    margin-bottom: 10px
+    +adaptive($mobile)
+      flex-direction: column
+    .box
+      &_img
+        width: 100%
+        max-width: 719px
+        margin-right: 30px
+        overflow: hidden
+        +adaptive($mobile)
+        +fullImg
+        .img
+          width: 100%
+          height: 283px
+          +adaptive($mobile)
+            height: 200px
+      &_text
+        width: 100%
+        max-width: calc(100% - 750px)
+        +adaptive($mobile)
+          max-width: 100%
+        .title
+          font-size: 48px
+          line-height: 1
+          color: $blue
+          margin-bottom: 10px
+          +adaptive($mobile)
+            font-size: 30px
+        .description
+          font-size: 18px
+          line-height: 1
+          font-style: italic
+          margin-bottom: 10px
+          +cutText(4)
+        .btn
+          width: 100%
+          display: flex
+          justify-content: center
+  &--list
+    width: 100%
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
+    +adaptive($mobile)
+      justify-content: space-around
+    .item
+      width: calc(calc(100% - 20px)/3)
+      margin-bottom: 15px
+      +adaptive($mobile)
+        width: 100%
+      .img
+        width: 100%
+        height: 179px
+        overflow: hidden
+        margin-bottom: 10px
+      .description
+        width: 100%
+        font-size: 18px
+        font-style: italic
+        margin-bottom: 10px
+        +cutText(4)
+      .btn
+        width: 100%
+        display: flex
+        justify-content: center
+.blog-page--inner
+  .blog-page
+      &--first
+        flex-direction: row-reverse
+        +adaptive($mobile)
+          flex-direction: column
+        .box
+          &_img
+            margin-right: 0
+            margin-left: 30px
+            +adaptive($mobile)
+              margin-left: 0
+              overflow: unset
+              +fullImg
+          &_text
+            .description
+              +cutText(unset)
+      &--full
+        width: 100%
+        column-count: 3
+        margin-bottom: 30px
+        +adaptive($mobile)
+          column-count: 1

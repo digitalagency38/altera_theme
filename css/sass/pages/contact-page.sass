@@ -1,0 +1,34 @@
+@import "../variable"
+
+.contact
+  width: 100%
+  height: 900px
+  +adaptive($mobile)
+    height: auto
+    background: none
+  &_info
+    width: 308px
+    padding: 28px 20px 20px
+    background-color: $white
+    margin-top: 50px
+    position: relative
+    z-index: 999
+    +adaptive($mobile)
+      width: calc(100% + 20px)
+      margin-left: -10px
+      margin-top: 0
+    .title
+      width: 100%
+      font-size: 48px
+      margin-bottom: 15px
+      color: $blue
+  &_map--mobile
+    display: none
+    width: 100%
+    height: 400px
+    background: url("../img/contact_map.png")
+    background-repeat: no-repeat
+    background-position: center
+    background-size: cover
+    +adaptive($mobile)
+      display: block

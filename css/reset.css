@@ -1,0 +1,64 @@
+/*@font-face {
+    font-family: RenaultLife;
+    src: url('../font/RenaultLife.ttf');
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: RenaultLife;
+    src: url('../font/RenaultLife-Bold.ttf');
+    font-style: normal;
+    font-weight: bold;
+}*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    width: 100%;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+}
+.no_scroll{
+    overflow: hidden;
+}
+ol,
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+a:focus, button:focus{
+    outline: none;
+}
+input, textarea{
+    border: none;
+    outline: none;
+}
+input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+input:focus::-webkit-input-placeholder { color:transparent; }
+input:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
+input:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
+input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
+
+textarea:focus::-webkit-input-placeholder { color:transparent; }
+textarea:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
+textarea:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
+textarea:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */

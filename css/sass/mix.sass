@@ -1,0 +1,16 @@
+@mixin adaptive($res)
+  @media screen and (max-width: $res)
+    @content
+
+@mixin fullImg
+  img
+    width: calc(100% + 20px)
+    margin-left: -10px
+
+@mixin cutText($length)
+  overflow: hidden
+  text-overflow: ellipsis
+  display: -webkit-box
+  -webkit-line-clamp: $length
+  -webkit-box-orient: vertical
+

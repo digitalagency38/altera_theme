@@ -1,0 +1,51 @@
+@import "parts/buttons"
+@import "parts/header"
+@import "parts/footer"
+@import "parts/side-bar"
+@import "parts/form"
+@import "pages/index-page"
+@import "pages/about-page"
+@import "pages/services-page"
+@import "pages/service-page"
+@import "pages/projects-page"
+@import "pages/project-page"
+@import "pages/thank-page"
+@import "pages/contact-page"
+@import "pages/notfound-page"
+@import "pages/blog-page"
+@import "pages/sale-page"
+@import "pages/shop-page"
+@import "pages/review-page"
+
+body
+  min-height: 100vh
+  display: flex
+  flex-direction: column
+  font-weight: 300
+
+.container
+  width: 100%
+  max-width: 1171px
+  margin: 0 auto
+  +adaptive($mobile)
+    padding: 0 10px
+  &--side-bar
+    display: flex
+    .content
+      width: calc(100% - 214px)
+      +adaptive($mobile)
+        width: 100%
+  &--shop
+    .page-title
+      display: none
+    .woocommerce-result-count
+      display: none
+    .woocommerce-ordering
+      display: none
+
+
+
+section
+  margin-bottom: 100px !important
+  +adaptive($mobile)
+    margin-bottom: 20px !important

@@ -1,0 +1,149 @@
+@import "../variable"
+
+.service
+  &_about
+    &--img
+      width: 167px
+      height: 134px
+      margin: 0 auto 15px
+    &--title
+      width: 100%
+      max-width: 666px
+      margin: auto
+      font-size: 100px
+      margin-bottom: 25px
+      line-height: 1
+      text-align: center
+      color: $blue
+      +adaptive($mobile)
+        font-size: 36px
+    &--description
+      width: 100%
+      margin: auto
+      max-width: 364px
+      font-style: italic
+      line-height: 1
+      margin-bottom: 20px
+    &--btn
+      display: flex
+      justify-content: center
+  &_gallery
+    width: 100%
+    display: flex
+    flex-wrap: wrap
+    +adaptive($mobile)
+      flex-direction: column
+    &--item
+      width: calc(100% / 3)
+      height: 313px
+      +adaptive($mobile)
+        width: 100%
+        height: 160px
+        overflow: hidden
+      img
+        width: auto
+  &_details
+    &--title
+      width: 100%
+      text-align: center
+      font-weight: 700
+      font-size: 30px
+      margin-bottom: 25px
+      +adaptive($mobile)
+        margin-bottom: 10px
+    &--content
+      width: 100%
+      column-count: 3
+      font-size: 18px
+      font-style: italic
+      +adaptive($mobile)
+        column-count: 1
+  &_best-projects
+    width: 100%
+    &--title
+      width: 100%
+      text-align: center
+      font-size: 30px
+      font-weight: 700
+      margin-bottom: 44px
+      +adaptive($mobile)
+        line-height: 1
+        margin-bottom: 14px
+    &--list
+      width: 100%
+      display: flex
+      justify-content: space-between
+      flex-wrap: wrap
+      +adaptive($mobile)
+        justify-content: space-around
+      .item
+        width: 100%
+        max-width: 355px
+        margin-bottom: 10px
+        .img
+          width: 100%
+          height: 237px
+          overflow: hidden
+          border-radius: 8px
+          margin-bottom: 8px
+          img
+            height: 100%
+        .title
+          font-size: 18px
+          font-weight: 700
+          padding-left: 10px
+        .short_desc
+          font-size: 18px
+          padding-left: 10px
+  &_advertising
+    width: 100%
+    height: 484px
+    +adaptive($mobile)
+      height: 120px
+    &--swiper
+      height: 100%
+      .swiper-slide
+        height: 100%
+        img
+          height: 100%
+      .swiper-pagination-bullet-active
+        background: $white !important
+  &_footer
+    width: 100%
+    display: flex
+    +adaptive($mobile)
+      flex-direction: column
+    .box
+      &_logo
+        margin-right: 70px
+        +adaptive($mobile)
+          margin-right: 0
+        .logo
+          width: 100%
+          max-width: 646px
+          height: 174px
+          margin-bottom: 10px
+          +adaptive($mobile)
+            height: 90px
+            margin-bottom: 20px
+        .text
+          width: 100%
+          max-width: 320px
+          margin-left: auto
+          text-align: right
+          color: $blue
+          font-style: italic
+          font-size: 18px
+          margin-bottom: 18px
+        .btn
+          width: 100%
+          display: flex
+          justify-content: flex-end
+          margin-bottom: 15px
+      &_img
+        width: 100%
+        max-width: 553px
+        height: 368px
+        +adaptive($mobile)
+          height: 220px
+          +fullImg
