@@ -19,31 +19,45 @@ Template Post Type: post_service
     </div>
 </div>
 
-<div class="main_first center_block new_first">
-  <h1 class="title intro__title"><?php echo get_the_title(); ?></h1>
-  <div class="main_first__blocks sl_first">
-    <?php
-    	if (isset($glavnyj_slajder)) {
-        	foreach ($glavnyj_slajder as $item) {
-    ?>
-      <div class="main_first__block">
-        <div class="main_first__l-side"><img src="<?= $item['kartinka_sleva']; ?>" alt="<?= $item['zagolovok']; ?>"></div>
-        <div class="main_first__c-side">
-          <div class="main_first__title"><?= $item['zagolovok']; ?></div>
-          <div class="main_first__text"><?= $item['tekst']; ?></div>
-          <a href="<?= $item['ssylka']; ?>" class="main_first__more<?php if ($item['forma']) {echo ' btn-popup';} ?>">Узнать подробности</a>
+
+
+    <div class="intro">
+        <div class="container">
+            <h1 class="title intro__title"><?php echo the_field('service_title') ?></h1>
+
+            <div class="swiper swiper-intro">
+                <div class="swiper-wrapper">
+					<?php
+						$slides = get_field('slider_services');
+						for ($i = 0; $i < count($slides); $i++) {
+							?>
+								<div class="swiper-slide">
+									<img src="<?php echo $slides[$i] ?>" alt="">
+								</div>
+							<?php
+							
+						}
+					?>
+                </div>
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
+
+                <!-- If we need navigation buttons -->
+                <div class="swiper-button-prev swiper-button-prev-intro">
+                    <svg width="59" height="42" viewBox="0 0 59 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M5.6828 19.5043L22.9404 2.11521L20.8412 0L0 21L20.8412 42L22.9404 39.8848L5.6828 22.4957H59V19.5043H5.6828Z" fill="white"/>
+					</svg>
+
+                </div>
+                <div class="swiper-button-next swiper-button-next-intro">
+                    <svg width="59" height="42" viewBox="0 0 59 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M53.3172 19.5043L36.0596 2.11521L38.1588 0L59 21L38.1588 42L36.0596 39.8848L53.3172 22.4957H0V19.5043H53.3172Z" fill="white"/>
+					</svg>
+
+                </div>
+            </div>
         </div>
-        <div class="main_first__r-side"><img src="<?= $item['kartinka_sprava']; ?>" alt="<?= $item['zagolovok']; ?>"></div>
-      </div>
-    <?php
-      		}
-    	};
-    ?>
-  </div>
-  <div class="main_first__navs sl_navs">
-    
-  </div>
-</div>
+    </div>
 <main class="content">
   <div class="main_advice center_block">
     <div class="main_advice__in">
@@ -62,24 +76,16 @@ Template Post Type: post_service
             <div class="title">
 				<?php echo the_field('benefits_title'); ?>
             </div>
+			<?php $benefits = get_field( 'benefits' );?>
             <div class="benefits__wrapper">
-                <div class="benefits__box">
-					<img src="<?php echo the_field('benefit_img_1'); ?>" alt="" class="benefits__box-img">
-                	<div class="benefits__box-title"><?php echo the_field('benefit_text_1'); ?></div>
-                </div>
-                <div class="benefits__box">
-					<img src="<?php echo the_field('benefit_img_2'); ?>" alt="" class="benefits__box-img">
-                    <div class="benefits__box-title"><?php echo the_field('benefit_text_2'); ?></div>
-                </div>
-                <div class="benefits__box">
-                    <img src="<?php echo the_field('benefit_img_3'); ?>" alt="" class="benefits__box-img">
-                    <div class="benefits__box-title"><?php echo the_field('benefit_text_3'); ?></div>
-                </div>
-                <div class="benefits__box">
-                    <img src="<?php echo the_field('benefit_img_4'); ?>" alt="" class="benefits__box-img">
-                    <div class="benefits__box-title"><?php echo the_field('benefit_text_4'); ?>
-                    </div>
-                </div>
+				<?php if (is_array($benefits)) {
+					foreach ($benefits as $e) { ?>
+						<div class="benefits__box">
+							<img src="<?php echo $e['img']; ?>" alt="" class="benefits__box-img">
+							<div class="benefits__box-title"><?php echo $e['title']; ?></div>
+						</div>
+					<?php } ?>
+				<?php } ?>
             </div>
         </div>
     </div>

@@ -531,3 +531,27 @@ function mycustom_wp_footer() {
 </script>
 <?php
 }
+
+
+add_filter( 'woocommerce_get_price_html', 'wpa83367_price_html', 100, 2 );
+	function wpa83367_price_html( $price, $product ){
+	return '<div class="card__prices--price">' . str_replace( '<ins>', '</div><div class="card__prices--price-old">', $price);
+}
+
+
+// Shortcode Callback function 
+function display_random_products_shortcode() { 
+  
+ 
+} 
+// register shortcode
+add_shortcode('display_random_products_woocommerce', 'display_random_products_shortcode'); 
+
+function sv_remove_product_page_skus( $enabled ) {
+    if ( ! is_admin() && is_product() ) {
+        return false;
+    }
+ 
+    return $enabled;
+}
+add_filter( 'wc_product_sku_enabled', 'sv_remove_product_page_skus' );

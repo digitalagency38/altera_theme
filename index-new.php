@@ -104,10 +104,17 @@ Template Name: Главная (новая)
 	?>
 	<div class="sale-page--list more-box post_news sl_new_news">
 		<?php foreach ($sale_list as $item): ?>
+		
 		<div class="item" itemid="<?php echo $item->ID?>">
 			<a href="<?php echo str_replace("https://altera-irkutsk.ru/","",str_replace("","",$item->guid))?>" class="img"><img src="<?php echo get_the_post_thumbnail_url($item)?>" alt="#"></a>
 			<div class="text">
-				<div class="post_date"><?php echo get_the_date(); ?></div>
+						<div class="post_date">
+						<?php
+						$date="$item->post_date";
+						$y = date('Y-m-d',strtotime($date));
+						echo $y;
+						?>
+						</div>
 				<a href="<?php echo str_replace("https://altera-irkutsk.ru/","",str_replace("","",$item->guid))?>" class="title"><?php echo $item->post_title?></a>
 				<div class="short_desc"><?php echo $item->post_excerpt?></div>
 				<a class="post_button" href="<?php echo str_replace("https://altera-irkutsk.ru/","",str_replace("","",$item->guid))?>">Подробнее</a>

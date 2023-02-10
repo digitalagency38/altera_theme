@@ -48,11 +48,24 @@ Template Name: Акции
                   <?php endif; ?>
 	<div class="container post_container">
         <div class="sale-page--list more-box post_news post_akcii">
+	<?php
+		$post_type = 'post_sale';
+		$count = wp_count_posts('post_sale')->publish;
+		$sale_list = get_posts([
+			'post_type' => $post_type,
+		]);
+	?>
 			<?php foreach ($sale_list as $item): ?>
                 <div class="item" itemid="<?php echo $item->ID?>">
                     <a href="<?php echo str_replace("https://altera-irkutsk.ru/","",str_replace("","",$item->guid))?>" class="img"><img src="<?php echo get_the_post_thumbnail_url($item)?>" alt="#"></a>
                     <div class="text">
-						<div class="post_date"><?php echo get_the_date(); ?></div>
+						<div class="post_date">
+						<?php
+						$date="$item->post_date";
+						$y = date('Y-m-d',strtotime($date));
+						echo $y;
+						?>
+						</div>
                         <a href="<?php echo str_replace("https://altera-irkutsk.ru/","",str_replace("","",$item->guid))?>" class="title"><?php echo $item->post_title?></a>
                         <div class="short_desc"><?php echo $item->post_excerpt?></div>
 						<a class="post_button" href="<?php echo str_replace("https://altera-irkutsk.ru/","",str_replace("","",$item->guid))?>">Подробнее</a>

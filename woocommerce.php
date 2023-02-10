@@ -1,4 +1,16 @@
 <?php get_header('new')?>
+<link rel="stylesheet" href="<?php echo get_theme_file_uri(); ?>/mag/css/style.css">
+<script src="<?php echo get_theme_file_uri(); ?>/mag/files/responsive.min.js"></script>
+<script src="<?php echo get_theme_file_uri(); ?>/mag/js/mag.js"></script>
+
+
+     <div class="breadcrumbs-wrapper new_bread">
+        <div class="container">
+            <div class="breadcrumbs-wrapper__inner">
+				<?php if ( function_exists( 'dimox_breadcrumbs' ) ) dimox_breadcrumbs(); ?>
+            </div>
+        </div>
+    </div>
 	<div class="container container--shop container--side-bar">
         <!--<div class="content">-->
             <?php //echo do_shortcode('[woof sid="auto_shortcode" autohide=1]');?>
@@ -182,16 +194,16 @@
             <?php else: ?>
                 <div class="content__catalog">
                     <?php //echo do_shortcode('[woof sid="auto_shortcode" autohide=1]');?>
-                    <?php echo do_shortcode('[wcas-search-form]');?>
+                    <?php //echo do_shortcode('[wcas-search-form]');?>
         
-                    <?php woocommerce_breadcrumb()?>
+                    <?php //woocommerce_breadcrumb()?>
 
                     <? if(!is_cart()):?>
                        <!-- <a href="https://altera-irkutsk.ru/cart/" class="present-modile"><img src="https://altera-irkutsk.ru/wp-content/themes/altera/img/present-modile.jpg" alt="Подарок"></a>-->
                         <a href="https://altera-irkutsk.ru/cart/" class="present"><img src="https://altera-irkutsk.ru/wp-content/themes/altera/img/present.jpg" alt="Подарок"></a>
                     <? endif; ?>
 
-                    <h1 class="catalog__big__heading"><?php single_term_title(); ?></h1>
+                    <h1 class="catalog__h1"><?php single_term_title(); ?></h1>
                     
         	        <?php //woocommerce_content(); ?>
                     <?php //is_cart() ?>
@@ -204,7 +216,10 @@
                         <? if (!$children_term): ?>
                         
                             <div class="product-filter">
-                                <?php echo do_shortcode('[wpf-filters id=1]');?>
+                                <?php //echo do_shortcode('[wpf-filters id=1]');?>
+                              	<div class="product-filter__title">Фильтр</div>
+                                <?php echo do_shortcode('[br_filters_group group_id=37843]');?>
+                                     
                             </div>
                             <div class="product-box">
                             
@@ -220,9 +235,9 @@
         <?php else: ?>
             <div class="content__catalog">
                 <?php //echo do_shortcode('[woof sid="auto_shortcode" autohide=1]');?>
-                <?php echo do_shortcode('[wcas-search-form]');?>
+                <?php //echo do_shortcode('[wcas-search-form]');?>
     
-                <?php woocommerce_breadcrumb()?>
+                <?php //woocommerce_breadcrumb()?>
                 <?php if (is_product() && false): ?>
                     <div class="navigate-categories"><?php echo do_shortcode('[product-catalog-list]')?></div>
                 <?php endif; ?>
@@ -235,4 +250,6 @@
     <?php echo do_shortcode('[contact-form-7 id="708" title="Получить консультацию"]') ?>  
   </div>
 </div>
+
+<script src="<?php echo get_theme_file_uri(); ?>/mag/js/app.min.js"></script>   
 <?php get_footer('new')?>

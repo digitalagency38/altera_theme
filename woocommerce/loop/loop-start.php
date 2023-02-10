@@ -18,22 +18,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-$add_class = '';
-$term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
-//$children = get_term_children($term->term_id, get_query_var('taxonomy'));
-$children = [];
-if (function_exists('avl_get_children_terms') && $term) {
-    $children = avl_get_children_terms($term);
-} 
-if (!$children && $term) {
-    $children = get_term_children($term->term_id, get_query_var('taxonomy'));
-}
 
-if ( (!$children && have_posts()) || isset($_GET['s']) ) {
-    $add_class = 'single__product__wrapper';
-} else {
-    $add_class = 'single__cat__wrapper';
-}
 ?>
-<!--<ul class="products columns-<?php /*echo esc_attr( wc_get_loop_prop( 'columns' ) ); */?>">-->
-<ul class="products shop--loop <?php echo $add_class; ?>">
+<div class="catalog__r-side">
+  <div class="card__list--blocks">

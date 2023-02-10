@@ -11,7 +11,7 @@
  * the readme will list any important changes.
  *
  * @see     https://docs.woocommerce.com/document/template-structure/
- * @package WooCommerce/Templates
+ * @package WooCommerce\Templates
  * @version 3.6.0
  */
 
@@ -24,63 +24,48 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	return;
 }
 ?>
-<li <?php wc_product_class( '', $product ); ?>>
-	<?php
-	/**
-	 * Hook: woocommerce_before_shop_loop_item.
-	 *
-	 * @hooked woocommerce_template_loop_product_link_open - 10
-	 */
-	do_action( 'woocommerce_before_shop_loop_item' );
 
-	/**
-	 * Hook: woocommerce_before_shop_loop_item_title.
-	 *
-	 * @hooked woocommerce_show_product_loop_sale_flash - 10
-	 * @hooked woocommerce_template_loop_product_thumbnail - 10
-	 */
-	do_action( 'woocommerce_before_shop_loop_item_title' );
+<div class="card__list--block">
+  <a href="<?= $product->get_permalink(); ?>" class="card__list--top">
+    <?= $product->get_image('large'); ?>
+    <?php if( !empty(get_field('flag_text')) ): ?>
+      <div class="card__list--flags">
+        <div class="card__list--flag"><?= get_field('flag_text'); ?></div>
+      </div>
+    <?php endif; ?>
+  </a>
+  <div class="card__list--info">
+    <a href="<?= $product->get_permalink(); ?>" class="card__list--title"><?= $product->get_name(); ?></a>
+    <?php if ( wc_product_sku_enabled() && ( $product->get_sku() || $product->is_type( 'variable' ) ) ) : ?>
+      <div class="card__list--article">
+        Код товара: <span><?php echo ( $sku = $product->get_sku() ) ? $sku : esc_html__( 'N/A', 'woocommerce' ); ?></span>
+      </div>
+    <?php endif; ?>
+    <div class="card__list--dis">
+      <div class="card__list--prices">
+        <div class="card__list--price"><?= $product->get_regular_price(); ?> ₽</div>
+        <?php if ($product->get_sale_price()): ?>	
+        	<div class="card__list--price-old"><?= $product->get_sale_price(); ?> ₽</div>
+        <?php endif ?>
+      </div>
+      <div class="card__list--amount">
+        <div class="quantity product__quantity">
+          <button type="button" class="product__quantity_button product__quantity_minus">
+            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="3" viewBox="0 0 10 3" fill="none">
+              <path d="M0 0.5H10V2.5H0V0.5Z" fill="#333333"></path>
+            </svg>
+          </button>
+          <input type="number" id="quantity_6360b676dcbaf" class="input-text qty text" step="1" min="1" max="" name="quantity" value="1" title="Кол-во" size="4" placeholder="" inputmode="numeric" autocomplete="off">
+          <button type="button" class="product__quantity_button product__quantity_plus">
+            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="11" viewBox="0 0 10 11" fill="none">
+              <path d="M0 4.78571H10V6.21429H0V4.78571Z" fill="#333333"></path>
+              <path d="M4.28571 10.5V0.5L5.71429 0.5L5.71429 10.5H4.28571Z" fill="#333333"></path>
+            </svg>
+          </button>
+        </div>  
+      </div>
+    </div>
+    <a href="?add-to-cart=<?= $product->get_id(); ?>" data-quantity="1" data-product_id="<?= $product->get_id(); ?>" data-product_sku="<?= $product->get_sku(); ?>" aria-label="Добавить «<?= $product->get_name(); ?>» в корзину" class="card__list--add-cart ajax_add_to_cart" rel="nofollow">В корзину</a>
+  </div>
+</div>
 
-	/**
-	 * Hook: woocommerce_after_shop_loop_item_title.
-	 *
-	 * @hooked woocommerce_template_loop_rating - 5
-	 * @hooked woocommerce_template_loop_price - 10
-	 */
-	 remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
-	do_action( 'woocommerce_after_shop_loop_item_title' );
-
-	/**
-	 * Hook: woocommerce_shop_loop_item_title.
-	 *
-	 * @hooked woocommerce_template_loop_product_title - 10
-	 */
-	do_action( 'woocommerce_shop_loop_item_title' );
-
-	/**
-	 * Hook: woocommerce_after_shop_loop_item.
-	 *
-	 * @hooked woocommerce_template_loop_product_link_close - 5
-	 * @hooked woocommerce_template_loop_add_to_cart - 10
-	 */
-	//скрывает кнопку добавить в корзину 
- 	remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5 );
-	remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
-	?>
-	<div class="flex-flex" style="display:flex;">
-	<?php
- 	//add_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_price', 10 );
- 	//add_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
-	?>
-	</div>
-    
-<?php
-    do_action( 'woocommerce_after_shop_loop_item' );
-	?>
-	<div class="add_wrapper" style="display:flex;">
-	    <span><?php echo $product->get_price_html(); ?></span>
-        <?php  //do_action( 'woocommerce_' . $product->product_type . '_add_to_cart' );
-            do_action( 'woocommerce_' . $product->get_type() . '_add_to_cart' );
-	    ?>
-	</div>
-</li>

@@ -76,29 +76,21 @@
     </div>
 
     <!--<div class="benefits blovk_new"> -->
-     <div class="benefits">
+     <div class="benefits" style="margin-bottom: 0;">
         <div class="container">
             <div class="title">
 				<?php echo the_field('benefits_title'); ?>
             </div>
+			<?php $benefits = get_field( 'benefits' );?>
             <div class="benefits__wrapper">
-                <div class="benefits__box">
-					<img src="<?php echo the_field('benefit_img_1'); ?>" alt="" class="benefits__box-img">
-                	<div class="benefits__box-title"><?php echo the_field('benefit_text_1') ?></div>
-                </div>
-                <div class="benefits__box">
-					<img src="<?php echo the_field('benefit_img_2'); ?>" alt="" class="benefits__box-img">
-                    <div class="benefits__box-title"><?php echo the_field('benefit_text_2') ?></div>
-                </div>
-                <div class="benefits__box">
-                    <img src="<?php echo the_field('benefit_img_3'); ?>" alt="" class="benefits__box-img">
-                    <div class="benefits__box-title"><?php echo the_field('benefit_text_3') ?></div>
-                </div>
-                <div class="benefits__box">
-                    <img src="<?php echo the_field('benefit_img_4'); ?>" alt="" class="benefits__box-img">
-                    <div class="benefits__box-title"><?php echo the_field('benefit_text_4') ?>
-                    </div>
-                </div>
+				<?php if (is_array($benefits)) {
+					foreach ($benefits as $e) { ?>
+						<div class="benefits__box">
+							<img src="<?php echo $e['img']; ?>" alt="" class="benefits__box-img">
+							<div class="benefits__box-title"><?php echo $e['title']; ?></div>
+						</div>
+					<?php } ?>
+				<?php } ?>
             </div>
         </div>
     </div>
