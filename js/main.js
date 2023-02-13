@@ -2716,7 +2716,7 @@ $(document).ready(function () {
       var corpText = 'Для корпоративных клиентов';
     //   $('#form_info_corp').val(corpText);
     var val1 = document.getElementById('form_info_corp').value = corpText;
-      console.log(val1);
+     // console.log(val1);
   });
 });
 
@@ -2958,35 +2958,35 @@ $(document).ready(function () {
   }, false );
 });
 
-$(document).ready(function () {
+// $(document).ready(function () {
 
-    function changeShippingPrice() {
-        var price = parseInt($('#shipping_method li .amount').text().replace(' ', ''));
-        var data = {
-            'action' : 'get_shipping_limit_price'
-        };
-        $.ajax( {
-            type: 'post',
-            url: ajax_object.ajax_url,
-            data: data,
-            dataType: 'json',
-            success:  function( response ) {
-                if (response) {
-                    $('.shipping-info .max-sum').text(response.free_min_amount);
+//     function changeShippingPrice() {
+//         var price = parseInt($('#shipping_method li .amount').text().replace(' ', ''));
+//         var data = {
+//             'action' : 'get_shipping_limit_price'
+//         };
+//         $.ajax( {
+//             type: 'post',
+//             url: ajax_object.ajax_url,
+//             data: data,
+//             dataType: 'json',
+//             success:  function( response ) {
+//                 if (response) {
+//                     $('.shipping-info .max-sum').text(response.free_min_amount);
 
-                    $('.shipping-info .shipping-sum').text(response.shipping_cost);
-                }
+//                     $('.shipping-info .shipping-sum').text(response.shipping_cost);
+//                 }
 
-            }
-        });
-    };
+//             }
+//         });
+//     };
 
-    changeShippingPrice();
-    $( document.body ).on( 'updated_wc_div', function() {
-        changeShippingPrice()
-    });
+//     changeShippingPrice();
+//     $( document.body ).on( 'updated_wc_div', function() {
+//         changeShippingPrice()
+//     });
 
-});
+// });
 $(function(){
   if (b24Tracker) {
     var guest = b24Tracker.guest.getTrace();
@@ -2997,7 +2997,7 @@ $(function(){
       $(elem).prepend(url);
     });
     $('[name="TRACE"]').each(function(i, elem){
-      console.log($(elem).val(guest));
+     // console.log($(elem).val(guest));
     });
   }
 });

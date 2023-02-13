@@ -71,11 +71,11 @@ if ( post_password_required() ) {
 					<div class="card__list">
 						<div class="card__list--item">
 							<div class="card__list--title">Доступна рассрочка</div>
-							<a href="#" class="card__list--link">Подробнее</a>
+							<a href="<?= get_option('ras_link'); ?>" class="card__list--link">Подробнее</a>
 						</div>
 						<div class="card__list--item">
 							<div class="card__list--title">Бесплатная доставка до двери</div>
-							<a href="#" class="card__list--link">Подробнее</a>
+							<a href="<?= get_option('mag_link'); ?>" class="card__list--link">Подробнее</a>
 						</div>
 					</div>
 					<button type="submit" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="card__add-card"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
@@ -92,41 +92,47 @@ if ( post_password_required() ) {
 			}, 500)
 			});
 		</script>
-        <div class="card__tabs">
-            <div id="responsiveTabsDemo">
-                <ul>
-                  	<? if ($product->get_short_description()): ?>
-                    	<li><a href="#tab-1">Описание</a></li>
-					<?endif;?>
-                    <li><a href="#tab-2">Характеристики</a></li>
-                </ul>
-                <div class="card__tabs--content">
-                  	<? if ($product->get_short_description()): ?>
-                      <div id="tab-1">
-                          <div class="card__tabs--text"><?= $product->get_short_description(); ?></div>
-                      </div>
-					<?endif;?>
-                    <div id="tab-2">
-                        <div class="card__options">
-                            <ul>
-                                <?
-                                    $attributes = $product->get_attributes();
+      <? if ($product->get_short_description() || $product->get_attributes()): ?>
+            <div class="card__tabs">
+                <div id="responsiveTabsDemo">
+                    <ul>
+                        <? if ($product->get_short_description()): ?>
+                            <li><a href="#tab-1">Описание</a></li>
+                        <?endif;?>
+                        <? if ($product->get_attributes()): ?>
+                            <li><a href="#tab-2">Характеристики</a></li>
+                        <?endif;?>
+                    </ul>
+                    <div class="card__tabs--content">
+                        <? if ($product->get_short_description()): ?>
+                          <div id="tab-1">
+                              <div class="card__tabs--text"><?= $product->get_short_description(); ?></div>
+                          </div>
+                        <?endif;?>
+                        <? if ($product->get_attributes()): ?>
+                          <div id="tab-2">
+                              <div class="card__options">
+                                  <ul>
+                                      <?
+                                          $attributes = $product->get_attributes();
 
-                                    foreach ($attributes as $attribute):
-                                        if ($attribute['visible']):
-                                ?>
-                                  <li>
-                                      <div class="card__options--title"><?= $attribute['name'];?></div>
-                                      <div class="card__options--text"><?= $attribute['value'];?></div>
-                                  </li>
-                                  <?endif;?>
-                              <?endforeach;?>
-                            </ul>
-                        </div>
+                                          foreach ($attributes as $attribute):
+                                              if ($attribute['visible']):
+                                      ?>
+                                        <li>
+                                            <div class="card__options--title"><?= $attribute['name'];?></div>
+                                            <div class="card__options--text"><?= $attribute['value'];?></div>
+                                        </li>
+                                        <?endif;?>
+                                    <?endforeach;?>
+                                  </ul>
+                              </div>
+                          </div>
+                        <?endif;?>
                     </div>
                 </div>
             </div>
-        </div>
+      <?endif;?>
 			<div class="card__list">
               <div class="card__list--tit">Похожие товары</div>
               <div class="card__list--blocks">
@@ -161,15 +167,33 @@ if ( post_password_required() ) {
                                   Код товара: <span><?php echo ( $sku = $product->get_sku() ) ? $sku : esc_html__( 'N/A', 'woocommerce' ); ?></span>
                               </div>
                           <?php endif; ?>
-                          <div class="card__list--dis">
-                              <div class="card__list--prices">
-                                  <div class="card__list--price"><?= $product->get_regular_price(); ?> ₽</div>
-                                  <?php if ($product->get_sale_price()): ?>	
-                                  	<div class="card__list--price-old"><?= $product->get_sale_price(); ?> ₽</div>
-                                  <?php endif ?>
-                              </div>
-                          </div>
-                        <a href="?add-to-cart=<?= $product->get_id(); ?>" data-quantity="1" data-product_id="<?= $product->get_id(); ?>" data-product_sku="<?= $product->get_sku(); ?>" aria-label="Добавить «<?= $product->get_name(); ?>» в корзину" class="card__list--add-cart ajax_add_to_cart" rel="nofollow">В корзину</a>
+                          
+    <form class="cart" action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>" method="post" enctype='multipart/form-data'>
+    <div class="card__list--dis">
+      <div class="card__list--prices">
+        <div class="card__list--price"><?= $product->get_regular_price(); ?> ₽</div>
+        <?php if ($product->get_sale_price()): ?>	
+        	<div class="card__list--price-old"><?= $product->get_sale_price(); ?> ₽</div>
+        <?php endif ?>
+      </div>
+      
+                  		<div class="card__list--amount">
+                        <div class="quantity product__quantity">
+                          <?php do_action( 'woocommerce_before_add_to_cart_quantity' );
+
+                              woocommerce_quantity_input( array(
+                                'min_value'   => apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product ),
+                                'max_value'   => apply_filters( 'woocommerce_quantity_input_max', $product->get_max_purchase_quantity(), $product ),
+                                'input_value' => isset( $_POST['quantity'] ) ? wc_stock_amount( wp_unslash( $_POST['quantity'] ) ) : $product->get_min_purchase_quantity(), // WPCS: CSRF ok, input var ok.
+                              ) );
+
+                              do_action( 'woocommerce_after_add_to_cart_quantity' );
+                          ?>
+                        </div>  
+                      </div>
+    </div>
+    <a href="?add-to-cart=<?= $product->get_id(); ?>" data-quantity="1" data-product_id="<?= $product->get_id(); ?>" data-product_sku="<?= $product->get_sku(); ?>" aria-label="Добавить «<?= $product->get_name(); ?>» в корзину" class="card__list--add-cart ajax_add_to_cart add_to_cart_button" rel="nofollow">В корзину</a>
+  </form>
                       </div>
                   </div>
                   <?php 

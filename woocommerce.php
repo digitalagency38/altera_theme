@@ -7,7 +7,11 @@
      <div class="breadcrumbs-wrapper new_bread">
         <div class="container">
             <div class="breadcrumbs-wrapper__inner">
-				<?php if ( function_exists( 'dimox_breadcrumbs' ) ) dimox_breadcrumbs(); ?>
+               <?php if(function_exists('bcn_display'))
+                {
+                    bcn_display();
+                }?>
+				<?php // if ( function_exists( 'dimox_breadcrumbs' ) ) dimox_breadcrumbs(); ?>
             </div>
         </div>
     </div>
@@ -218,19 +222,78 @@
                             <div class="product-filter">
                                 <?php //echo do_shortcode('[wpf-filters id=1]');?>
                               	<div class="product-filter__title">Фильтр</div>
-                                <?php echo do_shortcode('[br_filters_group group_id=37843]');?>
-                                     
+                                <?php echo do_shortcode('[br_filters_group group_id=38415]');?>
+                              	<div class="product-filter__btn">Применить</div>
                             </div>
                             <div class="product-box">
                             
                                 <?php woocommerce_content(); ?>
                             </div>
+               <div class="block_all">   
+                 <?php if ($term->description): ?>
+      <div class="seo">
+        <div class="container">
+            <div class="seo__inner">
+                <div class="seo__wrapper">
+                    <h2 class="title">
+                        <?php single_term_title(); ?>
+                    </h2>
+
+                    <div class="seo__text">
+                      <?php
+                       global $post;
+                      $args = array( 'taxonomy' => 'product_cat',);
+                      $terms = wp_get_post_terms($post->ID,'product_cat', $args);
+
+                          $count = count($terms);
+                          if ($count > 0) {
+
+                              foreach ($terms as $term) {
+                                  echo $term->description;
+
+                              }
+
+                          }
+
+                      ?>
+                    </div>
+                </div>
+                <img class="seo__img" src="<?php echo get_theme_file_uri(); ?>/img/service_new/seo_bg.png" alt="">
+            </div>
+
+        </div>
+    </div>
+        <?php endif; ?>
+
+    <div class="advice" style="margin-bottom: 0;">
+        <div class="container">
+            <div class="advice__inner">
+                <div>
+                    <div class="advice__title">
+                        Закажите консультацию
+                    </div>
+                    <div class="advice__descr">
+                        Наши специалисты свяжутся с вами и ответят на все интересующие вас вопросы.
+                    </div>
+                </div>
+
+                <div class="btn-service btn-service--small" data-form_id="31852">
+                    
+                    Отправить заявку
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+                  
+
+
                         <? else: ?>
                         
                             <?php woocommerce_content(); ?>
                         <?php endif; ?>
-                    <?php endif; ?>
-                </div>
+                    <?php endif; ?>	
+                </div>     
             <?php endif; ?>
         <?php else: ?>
             <div class="content__catalog">
@@ -245,6 +308,8 @@
             </div>
         <?php endif; ?>
 	</div>
+
+<?php echo do_shortcode('[contact-form-7 id="31852" title="Без названия"]') ?>
 <div class="service-popup">
   <div class="service-popup__inner">
     <?php echo do_shortcode('[contact-form-7 id="708" title="Получить консультацию"]') ?>  

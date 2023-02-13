@@ -1390,10 +1390,25 @@ textarea {
 	}
 }
 
-
-
-
-
+.widget_shopping_cart {
+	flex: 0 0 170px;
+}
+.card__list--info {
+    position: relative;
+}
+.added_to_cart.wc-forward {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #0095d9;
+    text-decoration: underline;
+    font-size: 14px;
+}
+.woocommerce-billing-fields__field-wrapper .address-field {
+    display: none !important;
+}
 
 
 

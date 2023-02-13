@@ -1,3 +1,9 @@
+
+$(function () {
+    setTimeout( function() {
+        $('#customer_details').append($('#payment'));
+    }, 100);
+});
 $(function(){
   function burg(){
     var burgerWr = $('.burger-wrap'),
@@ -51,7 +57,6 @@ $(document).ready(function(){
     $('#menu-main_cat-1 ul.sub-menu').each(function() {
         let link = $(this).siblings('a').clone();
         let li = $('<li></li>').prepend(link).clone();
-        console.log(li, window.innerWidth);
         $(this).prepend(li);
     })
   } else {

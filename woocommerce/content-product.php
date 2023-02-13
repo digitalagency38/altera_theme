@@ -41,6 +41,8 @@ if ( empty( $product ) || ! $product->is_visible() ) {
         Код товара: <span><?php echo ( $sku = $product->get_sku() ) ? $sku : esc_html__( 'N/A', 'woocommerce' ); ?></span>
       </div>
     <?php endif; ?>
+    <?php do_action( 'woocommerce_before_add_to_cart_form' ); ?>
+    <form class="cart" action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>" method="post" enctype='multipart/form-data'>
     <div class="card__list--dis">
       <div class="card__list--prices">
         <div class="card__list--price"><?= $product->get_regular_price(); ?> ₽</div>
@@ -48,24 +50,24 @@ if ( empty( $product ) || ! $product->is_visible() ) {
         	<div class="card__list--price-old"><?= $product->get_sale_price(); ?> ₽</div>
         <?php endif ?>
       </div>
-      <div class="card__list--amount">
-        <div class="quantity product__quantity">
-          <button type="button" class="product__quantity_button product__quantity_minus">
-            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="3" viewBox="0 0 10 3" fill="none">
-              <path d="M0 0.5H10V2.5H0V0.5Z" fill="#333333"></path>
-            </svg>
-          </button>
-          <input type="number" id="quantity_6360b676dcbaf" class="input-text qty text" step="1" min="1" max="" name="quantity" value="1" title="Кол-во" size="4" placeholder="" inputmode="numeric" autocomplete="off">
-          <button type="button" class="product__quantity_button product__quantity_plus">
-            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="11" viewBox="0 0 10 11" fill="none">
-              <path d="M0 4.78571H10V6.21429H0V4.78571Z" fill="#333333"></path>
-              <path d="M4.28571 10.5V0.5L5.71429 0.5L5.71429 10.5H4.28571Z" fill="#333333"></path>
-            </svg>
-          </button>
-        </div>  
-      </div>
+      
+                  		<div class="card__list--amount">
+                        <div class="quantity product__quantity">
+                          <?php do_action( 'woocommerce_before_add_to_cart_quantity' );
+
+                              woocommerce_quantity_input( array(
+                                'min_value'   => apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product ),
+                                'max_value'   => apply_filters( 'woocommerce_quantity_input_max', $product->get_max_purchase_quantity(), $product ),
+                                'input_value' => isset( $_POST['quantity'] ) ? wc_stock_amount( wp_unslash( $_POST['quantity'] ) ) : $product->get_min_purchase_quantity(), // WPCS: CSRF ok, input var ok.
+                              ) );
+
+                              do_action( 'woocommerce_after_add_to_cart_quantity' );
+                          ?>
+                        </div>  
+                      </div>
     </div>
-    <a href="?add-to-cart=<?= $product->get_id(); ?>" data-quantity="1" data-product_id="<?= $product->get_id(); ?>" data-product_sku="<?= $product->get_sku(); ?>" aria-label="Добавить «<?= $product->get_name(); ?>» в корзину" class="card__list--add-cart ajax_add_to_cart" rel="nofollow">В корзину</a>
+    <a href="?add-to-cart=<?= $product->get_id(); ?>" data-quantity="1" data-product_id="<?= $product->get_id(); ?>" data-product_sku="<?= $product->get_sku(); ?>" aria-label="Добавить «<?= $product->get_name(); ?>» в корзину" class="card__list--add-cart ajax_add_to_cart add_to_cart_button" rel="nofollow">В корзину</a>
+  </form>
   </div>
 </div>
 

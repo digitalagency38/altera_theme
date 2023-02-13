@@ -157,7 +157,7 @@ do_action( 'woocommerce_before_cart' ); ?>
             </div>
             <div class="cart__info--r-side">
                 <div class="cart__info--title">Платная доставка по Вашему адресу состовляет: <span>2 500 ₽</span></div>
-                <a href="#" class="cart__info--link">Подробнее</a>
+                <a href="<?= get_option('mag_link'); ?>" class="cart__info--link">Подробнее</a>
             </div>
         </div>
         <div class="cart__info--block">
@@ -168,7 +168,7 @@ do_action( 'woocommerce_before_cart' ); ?>
             </div>
             <div class="cart__info--r-side">
                 <div class="cart__info--title">Если вы сделаете дозаказ на сумму <span>10 000 ₽</span>, доставка по Вашему адресу будет бесплатной</div>
-                <a href="#" class="cart__info--link">Подробнее</a>
+                <a href="<?= get_option('mag_link'); ?>" class="cart__info--link">Подробнее</a>
             </div>
         </div>
         <div class="cart__info--block">

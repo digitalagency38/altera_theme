@@ -11,7 +11,7 @@
  * the readme will list any important changes.
  *
  * @see https://docs.woocommerce.com/document/template-structure/
- * @package WooCommerce/Templates
+ * @package WooCommerce\Templates
  * @version 3.5.0
  */
 
@@ -19,47 +19,112 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-do_action( 'woocommerce_before_checkout_form', $checkout );
+
+// do_action( 'woocommerce_before_checkout_form', WC()->checkout );
 
 // If checkout registration is disabled and not logged in, the user cannot checkout.
-if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_required() && ! is_user_logged_in() ) {
+if ( ! WC()->checkout->is_registration_enabled() && WC()->checkout->is_registration_required() && ! is_user_logged_in() ) {
 	echo esc_html( apply_filters( 'woocommerce_checkout_must_be_logged_in_message', __( 'You must be logged in to checkout.', 'woocommerce' ) ) );
 	return;
 }
 
 ?>
+  <form name="checkout" method="post" class="checkout woocommerce-checkout cart__step" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
 
-<form name="checkout" method="post" class="checkout woocommerce-checkout cart__step"  onsubmit="ym(39642225,'reachGoal','ordering'); return true;" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
+      <?php if ( WC()->checkout->get_checkout_fields() ) : ?>
 
-	<?php if ( $checkout->get_checkout_fields() ) : ?>
+<div class="cart__step--l-side">
+  <div class="cart__step--title">Оформление заказа</div>
+          <?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
 
-		<?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
+          <div class="col2-set" id="customer_details">
+              <div class="col-1">
+                  <?php do_action( 'woocommerce_checkout_billing' ); ?>
+              </div>
 
-        <div class="cart__step--l-side">
-            <div class="cart__step--title">Оформление заказа</div>
-				<?php do_action( 'woocommerce_checkout_billing' ); ?>
-		</div>
+              <div class="col-3">
+                  <?php if ( WC()->cart->needs_shipping() && WC()->cart->show_shipping() ) : ?>
+                      <?php wc_cart_totals_shipping_html(); ?>
+                  <?php endif; ?>
+              </div>
+              <div class="col-2">
+                  <?php do_action( 'woocommerce_checkout_shipping' ); ?>
+              </div>
+          </div>
 
-        <div class="cart__step--r-side">
-				<?php do_action( 'woocommerce_checkout_shipping' ); ?>
-  		</div>
+          <?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>
 
-		<?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>
+</div>
+      <?php endif; ?>
 
-	<?php endif; ?>
+      <?php do_action( 'woocommerce_checkout_before_order_review_heading' ); ?>
 
-	<?php do_action( 'woocommerce_checkout_before_order_review_heading' ); ?>
+<div class="cart__step--r-side">
+      <div class="cart__step--tit"><?php esc_html_e( 'Your order', 'woocommerce' ); ?></div>
 
-	<h3 id="order_review_heading"><?php esc_html_e( 'Your order', 'woocommerce' ); ?></h3>
+      <?php do_action( 'woocommerce_checkout_before_order_review' ); ?>
 
-	<?php do_action( 'woocommerce_checkout_before_order_review' ); ?>
+      <div id="order_review" class="woocommerce-checkout-review-order">
+          <?php do_action( 'woocommerce_checkout_order_review' ); ?>
+      </div>
+  <ul class="cart__step--list">
+    <li>
+      <div class="cart__step--name">Всего товаров:</div>
+      <div class="cart__step--number"><?php echo WC()->cart->get_cart_contents_count(); ?></div>
+    </li>
+    <li>
+      <div class="cart__step--name">Стоимость:</div>
+      <div class="cart__step--number" data-title="<?php esc_attr_e( 'Subtotal', 'woocommerce' ); ?>"><?php wc_cart_totals_subtotal_html(); ?></div>
+    </li>
+    <?php foreach ( WC()->cart->get_coupons() as $code => $coupon ) : ?>
+      <li class="cart-discount coupon-<?php echo esc_attr( sanitize_title( $code ) ); ?>">
+        <div class="cart__step--name"><?php wc_cart_totals_coupon_label( $coupon ); ?></div>
+        <div class="cart__step--number" data-title="<?php echo esc_attr( wc_cart_totals_coupon_label( $coupon, false ) ); ?>"><?php wc_cart_totals_coupon_html( $coupon ); ?></div>
+      </li>
+    <?php endforeach; ?>
+    
+    <?php
+    if ( wc_tax_enabled() && ! WC()->cart->display_prices_including_tax() ) {
+      $taxable_address = WC()->customer->get_taxable_address();
+      $estimated_text  = '';
 
-	<div id="order_review" class="woocommerce-checkout-review-order">
-		<?php do_action( 'woocommerce_checkout_order_review' ); ?>
-	</div>
+      if ( WC()->customer->is_customer_outside_base() && ! WC()->customer->has_calculated_shipping() ) {
+        /* translators: %s location. */
+        $estimated_text = sprintf( ' <small>' . esc_html__( '(estimated for %s)', 'woocommerce' ) . '</small>', WC()->countries->estimated_for_prefix( $taxable_address[0] ) . WC()->countries->countries[ $taxable_address[0] ] );
+      }
 
-	<?php do_action( 'woocommerce_checkout_after_order_review' ); ?>
+      if ( 'itemized' === get_option( 'woocommerce_tax_total_display' ) ) {
+        foreach ( WC()->cart->get_tax_totals() as $code => $tax ) { // phpcs:ignore WordPress.WP.GlobalVariablesOverride.OverrideProhibited
+    ?>
+      <li class="tax-rate tax-rate-<?php echo esc_attr( sanitize_title( $code ) ); ?>">
+        <div class="cart__step--name"><?php echo esc_html( $tax->label ) . $estimated_text; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
+        <div class="cart__step--number" data-title="<?php echo esc_attr( $tax->label ); ?>"><?php echo wp_kses_post( $tax->formatted_amount ); ?></div>
+      </li>
+    <?php
+        }
+      } else {
+    ?>
+      <li class="tax-total">
+        <div class="cart__step--name"><?php echo esc_html( WC()->countries->tax_or_vat() ) . $estimated_text; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
+        <div class="cart__step--number" data-title="<?php echo esc_attr( WC()->countries->tax_or_vat() ); ?>"><?php wc_cart_totals_taxes_total_html(); ?></div>
+      </li>
+    <?php
+      }
+    }
+    ?>
+  </ul>
+  <div class="cart__step--all-price">
+    <span>Итого:</span><?php wc_cart_totals_order_total_html(); ?>
+  </div>
 
-</form>
+  <?php do_action( 'woocommerce_review_order_before_submit' ); ?>
 
-<?php do_action( 'woocommerce_after_checkout_form', $checkout ); ?>
+  <?php echo apply_filters( 'woocommerce_order_button_html', '<button type="submit" class="button button__all-link cart__step--btn" name="woocommerce_checkout_place_order" id="place_order" value="' . esc_attr( $order_button_text ) . '" data-value="' . esc_attr( $order_button_text ) . '">Оформить заказ</button>' ); // @codingStandardsIgnoreLine ?>
+
+  <?php do_action( 'woocommerce_review_order_after_submit' ); ?>
+</div>
+      <?php do_action( 'woocommerce_checkout_after_order_review' ); ?>
+
+  </form>
+
+<?php do_action( 'woocommerce_after_checkout_form', WC()->checkout ); ?>

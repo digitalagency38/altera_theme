@@ -56,7 +56,6 @@ die("test");
 		do_action( 'woocommerce_sidebar' );
 	?>
 
-<?php get_footer( 'shop' );
+<?php get_footer( 'new' );
 
 /* Omit closing PHP tag at the end of PHP files to avoid "headers already sent" issues. */
-123321
