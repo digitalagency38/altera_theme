@@ -198,3 +198,25 @@ do_action( 'woocommerce_before_cart' ); ?>
   ?>
 </div>
 <?php do_action( 'woocommerce_after_cart' ); ?>
+
+    <div class="advice adf_cart" style="margin-bottom: 0;">
+        <div class="container">
+            <div class="advice__inner">
+                <div>
+                    <div class="advice__title">
+                        Нужна помощь с оформлением заказа?
+                    </div>
+                    <div class="advice__descr">
+                        Оставьте заявку на сайте, напишите в чат или позвоните нам
+                    </div>
+                </div>
+
+                <div class="btn-service btn-service--small" data-form_id="31852">
+                    
+                    Отправить заявку
+                </div>
+            </div>
+        </div>
+    </div>
+
+<?php echo do_shortcode('[contact-form-7 id="31852" title="Без названия"]') ?>

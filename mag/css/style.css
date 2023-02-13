@@ -2877,3 +2877,18 @@ body #customer_details .col-3 #shipping_method li {
     margin-bottom: 10px;
 }
 }
+.cart__step > .cart__step {
+	margin-bottom: 0px;
+}
+.adf_cart .advice__inner {
+	background: url(../../img/bg_crt.jpg) 50% / cover no-repeat;
+}
+.adf_cart .advice__title, .adf_cart .advice__descr{
+	color: #000;
+}
+.qib-container .quantity input.qty:not(#qib_id):not(#qib_id) {
+	border: 0 !important;
+}
+.woocommerce-notices-wrapper {
+	width: 100%;
+}
