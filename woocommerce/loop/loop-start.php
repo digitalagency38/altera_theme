@@ -34,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                         echo '<a href="?orderby=price" class="orderby-link orderby-asc-active">По цене</a>';
                     break;
                     default:
-                    echo '<a href="?orderby=price" class="orderby-link">По цене</a>';
+                    echo '<a href="?orderby=price-desc" id="orderby-link" class="orderby-link orderby-desc-active">По цене</a>';
                 endswitch;		
                 switch ($_GET['orderby']) :
                     case 'name' :

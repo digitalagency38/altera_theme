@@ -19,6 +19,7 @@ defined( 'ABSPATH' ) || exit;
 
 do_action( 'woocommerce_before_cart' ); ?>
 <link rel="stylesheet" href="<?php echo get_theme_file_uri(); ?>/mag/css/style.css">
+<script src="<?php echo get_theme_file_uri(); ?>/mag/js/mag.js"></script>
 
 <div class="cart center_block">
   <h1 class="cart__h1">Корзина</h1>

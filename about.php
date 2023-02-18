@@ -64,7 +64,7 @@ $services = get_posts([
 					портфолио, чтобы посмотреть наши лучшие работы!
 				</div>
 				<div class="portfolio_btn">
-					<a href="/potrfolio/" class="button">Посмотреть портфолио</a>
+					<a href="/portfolio/" class="button">Посмотреть портфолио</a>
 				</div>
 			</section>
 			<div class="block block-content-1">

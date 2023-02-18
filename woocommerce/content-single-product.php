@@ -53,6 +53,7 @@ if ( post_password_required() ) {
 							<div class="card__prices--price-old"><?= $product->get_sale_price(); ?> ₽</div>
 							<?php endif ?>
 						</div>
+<?php if ( $product->get_stock_quantity() !== 1 ): ?>
                   		<div class="card__list--amount">
                         <div class="quantity product__quantity">
                           <?php do_action( 'woocommerce_before_add_to_cart_quantity' );
@@ -67,6 +68,7 @@ if ( post_password_required() ) {
                           ?>
                         </div>  
                       </div>
+<?php endif ?>
 					</div>
 					<div class="card__list">
 						<div class="card__list--item">
@@ -92,55 +94,70 @@ if ( post_password_required() ) {
 			}, 500)
 			});
 		</script>
-      <? if ($product->get_short_description() || $product->get_attributes()): ?>
+      <?// if ($product->get_short_description() || $product->get_attributes()): ?>
             <div class="card__tabs">
                 <div id="responsiveTabsDemo">
                     <ul>
-                        <? if ($product->get_short_description()): ?>
+                        <?// if ($product->get_short_description()): ?>
                             <li><a href="#tab-1">Описание</a></li>
-                        <?endif;?>
-                        <? if ($product->get_attributes()): ?>
+                        <?//endif;?>
+                        <? //if ($product->get_attributes()): ?>
                             <li><a href="#tab-2">Характеристики</a></li>
-                        <?endif;?>
+                        <?//endif;?>
                     </ul>
                     <div class="card__tabs--content">
-                        <? if ($product->get_short_description()): ?>
+                        <? //if ($product->get_short_description()): ?>
                           <div id="tab-1">
-                              <div class="card__tabs--text"><?= $product->get_short_description(); ?></div>
+                              <div class="card__tabs--text">
+								  <?php the_content(); ?>
+							  </div>
                           </div>
-                        <?endif;?>
-                        <? if ($product->get_attributes()): ?>
+                        <?//endif;?>
+                        <? //if ($product->get_attributes()): ?>
                           <div id="tab-2">
                               <div class="card__options">
                                   <ul>
-                                      <?
-                                          $attributes = $product->get_attributes();
-
-                                          foreach ($attributes as $attribute):
-                                              if ($attribute['visible']):
-                                      ?>
-                                        <li>
-                                            <div class="card__options--title"><?= $attribute['name'];?></div>
-                                            <div class="card__options--text"><?= $attribute['value'];?></div>
-                                        </li>
-                                        <?endif;?>
-                                    <?endforeach;?>
+									  	<?php
+									  $product_tabs = apply_filters( 'woocommerce_product_tabs', array() );
+										?>
+									  
+		<?php foreach ( $product_tabs as $key => $product_tab ) : ?>
+			<li class="woocommerce-Tabs-panel woocommerce-Tabs-panel--<?php echo esc_attr( $key ); ?> panel entry-content wc-tab" id="tab-<?php echo esc_attr( $key ); ?>" role="tabpanel" aria-labelledby="tab-title-<?php echo esc_attr( $key ); ?>">
+				<?php
+                if ( isset( $product_tab['callback'] ) ) {
+					call_user_func( $product_tab['callback'], $key, $product_tab );
+				}
+				?>
+			</li>
+		<?php endforeach; ?>
+                                      
                                   </ul>
                               </div>
                           </div>
-                        <?endif;?>
+                        <?//endif;?>
                     </div>
                 </div>
             </div>
-      <?endif;?>
+      <?//endif;?>
 			<div class="card__list">
               <div class="card__list--tit">Похожие товары</div>
               <div class="card__list--blocks">
                 <?php
+	global $product;
+	$orderby = 'rand';
+	$columns = 4;
+	$related = $product->get_related( 7 );
                 $args = array(
-                  'post_type' => 'product',
-                  'posts_per_page' => 4,
-                  'orderby'          => 'rand',
+					'post_type' => 'product',
+					'no_found_rows' => 1,
+					'posts_per_page' => 4,
+					'ignore_sticky_posts' => 1,
+					'orderby' => $orderby,
+					'post__in' => $related,
+					'post__not_in' => array($product->id),
+					'meta_key'             => '_stock_status',
+					'meta_value'           => 'instock',
+					'compare'              => '!='
                 );?> 
                   <?php 
 
@@ -148,6 +165,7 @@ if ( post_password_required() ) {
                       while ( $loop->have_posts() ) : $loop->the_post(); 
                       global $product;
                   ?>
+				  <?//php if ( $product->get_regular_price() !== '' ): ?>
                   	<div class="card__list--block">
                       <a href="<?php the_permalink(); ?>" class="card__list--top">
                         <?php if (has_post_thumbnail( $loop->post->ID )) 
@@ -171,12 +189,15 @@ if ( post_password_required() ) {
     <form class="cart" action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>" method="post" enctype='multipart/form-data'>
     <div class="card__list--dis">
       <div class="card__list--prices">
-        <div class="card__list--price"><?= $product->get_regular_price(); ?> ₽</div>
+        <div class="card__list--price">
+			<?= $product->get_regular_price(); ?> ₽
+		  </div>
         <?php if ($product->get_sale_price()): ?>	
         	<div class="card__list--price-old"><?= $product->get_sale_price(); ?> ₽</div>
         <?php endif ?>
       </div>
       
+<?php if ( $product->get_stock_quantity() !== 1 ): ?>
                   		<div class="card__list--amount">
                         <div class="quantity product__quantity">
                           <?php do_action( 'woocommerce_before_add_to_cart_quantity' );
@@ -191,11 +212,12 @@ if ( post_password_required() ) {
                           ?>
                         </div>  
                       </div>
+<?php endif ?>
     </div>
     <a href="?add-to-cart=<?= $product->get_id(); ?>" data-quantity="1" data-product_id="<?= $product->get_id(); ?>" data-product_sku="<?= $product->get_sku(); ?>" aria-label="Добавить «<?= $product->get_name(); ?>» в корзину" class="card__list--add-cart ajax_add_to_cart add_to_cart_button" rel="nofollow">В корзину</a>
   </form>
                       </div>
-                  </div>
+                  </div><?//php endif ?>
                   <?php 
                      endwhile;
                      wp_reset_query(); ?>

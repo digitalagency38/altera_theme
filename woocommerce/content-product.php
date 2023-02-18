@@ -50,7 +50,8 @@ if ( empty( $product ) || ! $product->is_visible() ) {
         	<div class="card__list--price-old"><?= $product->get_sale_price(); ?> ₽</div>
         <?php endif ?>
       </div>
-      
+<?php if ( $product->get_stock_quantity() !== 1 ): ?>	
+		
                   		<div class="card__list--amount">
                         <div class="quantity product__quantity">
                           <?php do_action( 'woocommerce_before_add_to_cart_quantity' );
@@ -58,13 +59,15 @@ if ( empty( $product ) || ! $product->is_visible() ) {
                               woocommerce_quantity_input( array(
                                 'min_value'   => apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product ),
                                 'max_value'   => apply_filters( 'woocommerce_quantity_input_max', $product->get_max_purchase_quantity(), $product ),
-                                'input_value' => isset( $_POST['quantity'] ) ? wc_stock_amount( wp_unslash( $_POST['quantity'] ) ) : $product->get_min_purchase_quantity(), // WPCS: CSRF ok, input var ok.
+                                'input_value' => isset( $_POST['quantity'] ) ? 1 : $product->get_min_purchase_quantity(), // WPCS: CSRF ok, input var ok.
+								  
                               ) );
 
                               do_action( 'woocommerce_after_add_to_cart_quantity' );
                           ?>
                         </div>  
                       </div>
+<?php endif ?>
     </div>
     <a href="?add-to-cart=<?= $product->get_id(); ?>" data-quantity="1" data-product_id="<?= $product->get_id(); ?>" data-product_sku="<?= $product->get_sku(); ?>" aria-label="Добавить «<?= $product->get_name(); ?>» в корзину" class="card__list--add-cart ajax_add_to_cart add_to_cart_button" rel="nofollow">В корзину</a>
   </form>

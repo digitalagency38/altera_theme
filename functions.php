@@ -679,6 +679,3 @@ add_filter( 'woocommerce_default_catalog_orderby_options', 'wc_custom_catalog_or
 
 
 
-
-
-

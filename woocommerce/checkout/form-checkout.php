@@ -44,7 +44,46 @@ if ( ! WC()->checkout->is_registration_enabled() && WC()->checkout->is_registrat
 
               <div class="col-3">
                   <?php if ( WC()->cart->needs_shipping() && WC()->cart->show_shipping() ) : ?>
-                      <?php wc_cart_totals_shipping_html(); ?>
+                    <div class="block_tabs">
+                      <div class="block_tabs__top">
+                        <?php wc_cart_totals_shipping_html(); ?>
+                      </div>
+                      <div class="block_tabs__content">
+                        <div class="block_tabs__tab1 block_tabs_tab isActive">
+                          <div class="block_tabs__l">
+                            <div class="block_tabs__tit">Контакты:</div>
+                            <div class="block_tabs__block">
+                              <div class="block_tabs__title">Единый телефон:</div>
+                              <a href="tel:73952504201" class="block_tabs__text">+ 7(3952) 50-42-01</a>
+                            </div>
+                            <div class="block_tabs__block">
+                              <div class="block_tabs__title">Электронная почта:</div>
+                              <a href="mailto:sale@irk-altera.ru" class="block_tabs__text">sale@irk-altera.ru</a>
+                            </div>
+                            <div class="block_tabs__block">
+                              <div class="block_tabs__title">Адрес:</div>
+                              <div class="block_tabs__text">664047, г.Иркутск, ул.Партизанская, 63</div>
+                            </div>
+                            <div class="block_tabs__block">
+                              <div class="block_tabs__title">Режим работы склада:</div>
+                              <div class="block_tabs__text">Пн-Пт: 09.00 — 19.00 / Сб-Вс: выходной</div>
+                            </div>
+                          </div>
+                          <div class="block_tabs__r">
+                            <div class="contact" id="map-contact" style="height: 330px;"></div>
+                          </div>
+
+                        </div>
+                        <div class="block_tabs__tab2 block_tabs_tab">
+
+                        </div>
+                        <div class="block_tabs__tab3 block_tabs_tab">
+                          <p>Доставка осуществляется транспортной компанией на ваш выбор.</p> <br>
+                          Доставка до транспортной бесплатная от 10 000 руб. Оплата за доставку осуществляется при получении заказа.
+                        </div>
+                      </div>
+                    </div>
+				  
                   <?php endif; ?>
               </div>
               <div class="col-2">

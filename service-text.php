@@ -149,7 +149,7 @@ Template Post Type: post_service
 					<?php echo the_field('portfolio_title'); ?>
                   
                 </div>
-                <a href="/potrfolio/">
+                <a href="/portfolio">
                     <div class="btn-service btn-service--portfolio btn-service--portfolio-small mt30">
                         Все работы
                     </div>
