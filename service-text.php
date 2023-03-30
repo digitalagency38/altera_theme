@@ -91,7 +91,7 @@ Template Post Type: post_service
     </div>
   
   <div class="container text-page-redesign">
-  <div class="title intro__title"><?php echo the_field('title-page-redesign'); ?></div>
+  <div class="title intro__title"><?php echo the_title(); ?></div>
         <section>
             <?php if ( have_posts() ) : while ( have_posts() ) : the_post();
                 the_content();

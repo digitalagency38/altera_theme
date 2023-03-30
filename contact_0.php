@@ -21,4 +21,6 @@ Template Name: Контакты 2
     <?php echo do_shortcode('[contact-form-7 id="708" title="Получить консультацию"]') ?>  
   </div>
 </div>
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+<script type='text/javascript' src='https://altera-irkutsk.ru/wp-content/themes/altera/js/map.js'></script>
 <?php get_footer('new')?>

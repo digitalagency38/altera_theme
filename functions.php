@@ -679,3 +679,32 @@ add_filter( 'woocommerce_default_catalog_orderby_options', 'wc_custom_catalog_or
 
 
 
+add_action( 'init', 'true_register_post_type_init' );
+function true_register_post_type_init() {
+ 
+	$projects_labels = array(
+		'name' => 'Проекты',
+		'singular_name' => 'Проект',
+		'add_new' => 'Добавить Проект',
+		'add_new_item' => 'Добавить Проект',
+		'edit_item' => 'Редактировать Проект',
+		'new_item' => 'Новый Проект',
+		'all_items' => 'Все Проекты',
+		'search_items' => 'Искать Проекты',
+		'not_found' =>  'Проекты по заданным критериям не найдено.',
+		'not_found_in_trash' => 'В корзине нет Проектов.',
+		'menu_name' => 'Проекты'
+	);
+ 
+	$projects_args = array(
+		'labels' => $projects_labels,
+		'public' => true,
+		'publicly_queryable' => true,
+		'has_archive' => false,
+		'menu_icon' => 'dashicons-star-filled',
+		'menu_position' => 3,
+		'supports' => array( 'title' )
+	);
+ 
+	register_post_type( 'projects', $projects_args );
+}

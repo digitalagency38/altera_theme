@@ -28,7 +28,7 @@
                 <?php woocommerce_breadcrumb()?>
                 <? if(!is_cart()):?>
                     <!--<a href="https://altera-irkutsk.ru/cart/" class="present-modile"><img src="https://altera-irkutsk.ru/wp-content/themes/altera/img/present-modile.jpg" alt="Подарок"></a>-->
-                    <a href="https://altera-irkutsk.ru/cart/" class="present"><img src="https://altera-irkutsk.ru/wp-content/themes/altera/img/present.jpg" alt="Подарок"></a>
+<!--                     <a href="https://altera-irkutsk.ru/cart/" class="present"><img src="https://altera-irkutsk.ru/wp-content/themes/altera/img/present.jpg" alt="Подарок"></a> -->
                 <? endif; ?>
 
                 <h1 class="catalog__big__heading">Выберите категорию товара</h1>
@@ -204,7 +204,7 @@
 
                     <? if(!is_cart()):?>
                        <!-- <a href="https://altera-irkutsk.ru/cart/" class="present-modile"><img src="https://altera-irkutsk.ru/wp-content/themes/altera/img/present-modile.jpg" alt="Подарок"></a>-->
-                        <a href="https://altera-irkutsk.ru/cart/" class="present"><img src="https://altera-irkutsk.ru/wp-content/themes/altera/img/present.jpg" alt="Подарок"></a>
+<!--                         <a href="https://altera-irkutsk.ru/cart/" class="present"><img src="https://altera-irkutsk.ru/wp-content/themes/altera/img/present.jpg" alt="Подарок"></a> -->
                     <? endif; ?>
 
                     <h1 class="catalog__h1"><?php single_term_title(); ?></h1>

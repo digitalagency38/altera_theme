@@ -221,3 +221,5 @@ do_action( 'woocommerce_before_cart' ); ?>
     </div>
 
 <?php echo do_shortcode('[contact-form-7 id="31852" title="Без названия"]') ?>
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+<script type='text/javascript' src='https://altera-irkutsk.ru/wp-content/themes/altera/js/map.js'></script>

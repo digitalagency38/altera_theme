@@ -8,8 +8,8 @@
     <meta name="format-detection" content="telephone=no" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i&display=swap&subset=cyrillic-ext" rel="stylesheet">
     <link rel="shortcut icon" type="image/x-icon" sizes="16x16" href="" />
-<script src="https://cdn-ru.bitrix24.ru/b14838556/crm/tag/call.tracker.js?<?= time() ?>"></script>
-		<!-- Facebook Pixel Code -->
+	<script src="https://cdn-ru.bitrix24.ru/b14838556/crm/tag/call.tracker.js?<?= time() ?>"></script>
+  		<!-- Facebook Pixel Code -->
 	
 		<script>
   		!function(f,b,e,v,n,t,s)
@@ -46,15 +46,10 @@
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/39642225" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
-
-
-
-<?php wp_head(); ?>
-<?php if(false): ?>
-    <meta name="google-site-verification" content="MZhwcE-xzzfQT0EUP5gEv0CtXXd-o2j6u6-KwbqPfJM" />
-<?php endif; ?>
-	
-	
+	<?php wp_head(); ?>
+	<?php if(false): ?>
+		<meta name="google-site-verification" content="MZhwcE-xzzfQT0EUP5gEv0CtXXd-o2j6u6-KwbqPfJM" />
+	<?php endif; ?>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -83,8 +78,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   gtag('config', 'AW-399479905');
 </script>
-
-    <?php wp_head(); ?>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -181,6 +174,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                         );
                                     ?>
                                 </nav>
+								<?php if (get_option('sale_image')): ?>
                                 <div class="popups__block">
                                     <div class="popups__img"><img src="<?= get_option('sale_image'); ?>" alt=""></div>
                                     <div class="popups__title"><?= get_option('sale_title'); ?></div>
@@ -189,6 +183,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                     </div>
                                     <a href="<?= get_option('sale_link'); ?>" class="popups__btn">Узнать подробности</a>
                                 </div>
+								<?php endif; ?>
                             </div>
                         </div>
                     </div>

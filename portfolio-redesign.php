@@ -48,6 +48,7 @@ foreach ($terms as $key => $term){
                         Все категории
                     </li>
 				    <?php foreach ($terms as $term):?>
+					<?php if ($term->count != 0 ):?>
                         <li onclick="
                                     getPostByTag(
                                         '<?php echo $term->slug?>',
@@ -60,6 +61,7 @@ foreach ($terms as $key => $term){
                         >
                             <?php echo isset($term->name) ? $term->name : $term['title'] ?>
                         </li>
+				    <?php endif;?>
 				    <?php endforeach;?>
                 </ul>
             </div>

@@ -98,6 +98,7 @@ if ( ! WC()->checkout->is_registration_enabled() && WC()->checkout->is_registrat
 
       <?php do_action( 'woocommerce_checkout_before_order_review_heading' ); ?>
 
+<div class="cart_step_all">
 <div class="cart__step--r-side">
       <div class="cart__step--tit"><?php esc_html_e( 'Your order', 'woocommerce' ); ?></div>
 
@@ -155,12 +156,16 @@ if ( ! WC()->checkout->is_registration_enabled() && WC()->checkout->is_registrat
   <div class="cart__step--all-price">
     <span>Итого:</span><?php wc_cart_totals_order_total_html(); ?>
   </div>
-
+  <div class="checkbox">
+    <input class="custom-checkbox" type="checkbox" checked id="color-1" name="color-1" value="indigo">
+	  <label for="color-1">Оставляя заявку, вы соглашаетесь на обработу <a href="/politika-obrabotki-personalnih-dannih">персональных данных</a></label>
+  </div>
   <?php do_action( 'woocommerce_review_order_before_submit' ); ?>
 
   <?php echo apply_filters( 'woocommerce_order_button_html', '<button type="submit" class="button button__all-link cart__step--btn" name="woocommerce_checkout_place_order" id="place_order" value="' . esc_attr( $order_button_text ) . '" data-value="' . esc_attr( $order_button_text ) . '">Оформить заказ</button>' ); // @codingStandardsIgnoreLine ?>
 
   <?php do_action( 'woocommerce_review_order_after_submit' ); ?>
+</div>
 </div>
       <?php do_action( 'woocommerce_checkout_after_order_review' ); ?>
 

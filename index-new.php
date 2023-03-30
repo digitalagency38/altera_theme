@@ -90,6 +90,46 @@ Template Name: Главная (новая)
     ?>
   </div>
 </div>
+<?php $proj_main = get_field( 'proj_main' );?>
+<?php if ($proj_main['title']): ?>	
+<div class="proj_main">
+	<div class="container">
+		<div class="proj_main__top">
+			<div class="proj_main__title"><?php echo $proj_main['title']; ?></div>
+			<a href="<?php echo $proj_main['link']; ?>" class="proj_main__link">Все работы</a>
+		</div>
+		<div class="proj_main__blocks sl_proj_main">
+		<?php $proj_list = get_field('proj_list'); ?>
+		<?php foreach( $proj_list as $key => $post) { // Переменная должна быть названа обязательно $post (IMPORTANT) ?>
+			<?php setup_postdata($post); ?>
+				<div class="block_proj__block">
+					<div class="block_proj__top">
+						<div class="block_proj__img">
+							<img src="<?= get_field( 'img' ); ?>" alt="<?php the_title(); ?>">
+						</div>
+					</div>
+					<div class="block_proj__info">
+						<div class="block_proj__l-side">
+							<a href="<?php echo get_permalink(); ?>" class="block_proj__tit"><?php the_title(); ?></a>
+							<div class="block_proj__text"><?= get_field( 'text' ); ?></div>
+							<div class="block_proj__dates">
+								<div class="block_proj__date"><span>Начали: </span><?= get_field( 'date_start' ); ?></div>
+								<div class="block_proj__date"><span>Сдадим: </span><?= get_field( 'date_end' ); ?></div>
+							</div>
+							<a href="<?php echo get_permalink(); ?>" class="block_proj__link">Смотреть проект</a>
+						</div>
+						<div class="block_proj__r-side">
+							<div class="block_proj__date"><span>Начали: </span><?= get_field( 'date_start' ); ?></div>
+							<div class="block_proj__date"><span>Сдадим: </span><?= get_field( 'date_end' ); ?></div>
+						</div>
+					</div>
+				</div>
+			<?php } ?>
+	  	<?php wp_reset_postdata(); // ВАЖНО - сбросьте значение $post object чтобы избежать ошибок в дальнейшем коде ?>
+		</div>
+	</div>
+</div>
+<?php endif ?>
 <div class="main_services main_news center_block">
   <div class="main_services__top">
     <div class="main_services__title">Акции</div>

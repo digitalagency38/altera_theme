@@ -42,6 +42,46 @@ $(function() {
       	let text = $(`.main_first__block[data-slick-index="${keyName}"] .main_first__title`).html();
     	$(this).html(text);
     });
+	$('.sl_txt').slick({
+       slidesToShow: 2,
+       slidesToScroll: 1,
+       arrows: true,
+		infinite: false,
+       dots: false,    
+       focusOnSelect: false,
+       responsive: [
+         {
+           breakpoint: 680,
+           settings: {
+       slidesToShow: 1
+           }
+         },
+       ]
+    });
+	$('.sl_proj_main').slick({
+       slidesToShow: 2,
+       slidesToScroll: 1,
+       arrows: false,
+		infinite: false,
+       dots: false,    
+       responsive: [
+         {
+           breakpoint: 680,
+           settings: {
+       			slidesToShow: 1,
+       			arrows: false
+           }
+         },
+         {
+           breakpoint: 520,
+           settings: {
+				infinite: true,
+			   variableWidth: true,
+       			arrows: false
+           }
+         },
+       ]
+    });
 //     $('.sl_navs').slick({
 //        slidesToShow: 4,
 //        slidesToScroll: 1,
